@@ -1,0 +1,11 @@
+{
+    "name": "MashableApplicationComponent",
+    "dependencies": {
+    },
+    "exportsOverride": {
+    },
+    "devDependencies": {
+        "jquery": null,
+        "mock-applicationmashup": null
+    }
+}

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="panel" version="1.0.0">
+  <details>
+    <title>Panel</title>
+    <email>aarranz@conwet.com</email>
+    <description>Displaying simple texts messages, like measures, in an easy way</description>
+    <image>images/catalogue.png</image>
+    <longdescription>DESCRIPTION.md</longdescription>
+    <doc>doc/userguide.md</doc>
+    <changelog>doc/changelog.md</changelog>
+    <authors>Álvaro Arranz García &lt;aarranz@conwet.com&gt;</authors>
+  </details>
+  <requirements>
+      <feature name="StyledElements"/>
+  </requirements>
+  <wiring>
+    <inputendpoint name="textinput" type="text" label="Contents" description="Contents" friendcode="*"/>
+  </wiring>
+  <contents src="index.html" useplatformstyle="true"/>
+  <rendering height="47" width="5"/>
+</widget>
