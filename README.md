@@ -1,9 +1,7 @@
-Spy Wiring widget
-======================
+Panel widget
+============
 
-The Spy Wiring widget is a WireCloud widget that provides an easy way to inspect the data that travels trough the wiring.
-
-Latest version of this widget is always [provided in FIWARE lab](https://store.lab.fiware.org/search/keyword/KurentoStarterKit) where you can make use of it on the [Mashup portal](https://mashup.lab.fiware.org/)
+The panel widget is a WireCloud widget that provides an easy way to display simple text messages, like measures.
 
 Build
 -----
@@ -41,27 +39,36 @@ If everything goes well, you will find a wgt file in the `build` folder.
 
 ## Settings
 
-`Write here the preferences`
+- `Min height (Percentage)`: Minimal font-size to use. This value is a percentage relative to the available height.
+- `Max height (Percentage)`: Maximal font-size to use. This value is a percentage relative to the available height.
 
 ## Wiring
 
-
 ### Input Endpoints
 
-`Write here the input wiring endpoints`
+- **Contents**: An object with the message to display. The message should be provided using the `value` key. E.g.
+    ```json
+    {
+        "value": "Text message"
+    }
+    ```
 
+    You can also provide a unit:
+
+    ```json
+    {
+        "value": "24.5",
+        "unit": "ºC"
+    }
+    ```
 
 ### Output Endpoints
 
-
-`Write here the output wiring endpoints`
-
-## Usage
-
+- This widget has no output endpoint
 
 ## Reference
 
-- [FIWARE Mashup](https://mashup.lab.fiware.org/)
+- [FIWARE Lab's Mashup Portal](https://mashup.lab.fiware.org/)
 
 ## Copyright and License
 
