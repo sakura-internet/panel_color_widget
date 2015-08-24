@@ -7,7 +7,7 @@
     var MP = MashupPlatform;
 
     var repaint = function () {
-        var height, width, message, next;
+        var height, width, message, next, min;
 
         height = MashupPlatform.widget.context.get('heightInPixels');
         width = MashupPlatform.widget.context.get('widthInPixels');
@@ -17,10 +17,11 @@
         document.body.style.lineHeight = height + 'px';
 
         message.style.height = height + 'px';
-        next = 0.6;
-        while ((message.offsetWidth > width || message.offsetHeight > height) && next > 0.2) {
+        next = Number(MashupPlatform.prefs.get('max-height')) / 100;
+        min = Number(MashupPlatform.prefs.get('min-height')) / 100;
+        while ((message.offsetWidth > width || message.offsetHeight > height) && next > min) {
             document.body.style.fontSize = (height * next) + 'px';
-            next -= 0.1;
+            next -= 0.05;
         }
     };
 

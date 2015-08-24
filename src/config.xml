@@ -13,6 +13,10 @@
   <requirements>
       <feature name="StyledElements"/>
   </requirements>
+  <preferences>
+      <preference name="max-height" type="text" label="Max height (Percentage)" default="60" />
+      <preference name="min-height" type="text" label="Min height (Percentage)" default="10" />
+  </preferences>
   <wiring>
     <inputendpoint name="textinput" type="text" label="Contents" description="Contents" friendcode="*"/>
   </wiring>
