@@ -19,9 +19,12 @@
         message.style.height = height + 'px';
         next = Number(MashupPlatform.prefs.get('max-height')) / 100;
         min = Number(MashupPlatform.prefs.get('min-height')) / 100;
-        while ((message.offsetWidth > width || message.offsetHeight > height) && next > min) {
+        while ((message.offsetWidth > width || message.offsetHeight > height) && next >= min) {
             document.body.style.fontSize = Math.floor(height * next) + 'px';
             next -= 0.05;
+        }
+        if ((message.offsetWidth > width || message.offsetHeight > height)) {
+            document.body.style.fontSize = Math.floor(height * min) + 'px';
         }
     };
 
