@@ -2,6 +2,7 @@
 =====
 
 - Added a max-height and a min-height preferences
+- Round font-height values (improve text rendering)
 - Added initial version of this changelog file
 
 1.0.0
