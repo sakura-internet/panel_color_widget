@@ -21,5 +21,5 @@
     <inputendpoint name="textinput" type="text" label="Contents" description="Contents" friendcode="panel-content"/>
   </wiring>
   <contents src="index.html" useplatformstyle="true"/>
-  <rendering height="47" width="5"/>
+  <rendering height="200px" width="400px"/>
 </widget>
