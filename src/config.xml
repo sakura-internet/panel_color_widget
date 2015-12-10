@@ -18,7 +18,7 @@
       <preference name="min-height" type="text" label="Min height (Percentage)" default="10" />
   </preferences>
   <wiring>
-    <inputendpoint name="textinput" type="text" label="Contents" description="Contents" friendcode="*"/>
+    <inputendpoint name="textinput" type="text" label="Contents" description="Contents" friendcode="panel-content"/>
   </wiring>
   <contents src="index.html" useplatformstyle="true"/>
   <rendering height="47" width="5"/>
