@@ -29,9 +29,15 @@
     };
 
     MP.wiring.registerCallback('textinput', function (data) {
-        var message, unit;
+        var message, unit, decimals, pow;
 
         data = JSON.parse(data);
+        decimals = parseInt(MashupPlatform.prefs.get('decimals'), 10);
+
+        if (typeof data.value === 'number' && !isNaN(decimals) && decimals >= 0) {
+            pow = Math.pow(10, decimals);
+            data.value = Math.round((pow * data.value).toFixed(decimals)) / pow;
+        }
 
         message = document.getElementById('message');
         message.textContent = data.value;

@@ -1,3 +1,8 @@
+## 1.0.3
+
+- Add a preference for controlling how many decimals to use when displaying
+  numbers
+
 ## 1.0.2
 
 - Move to use pixel units for the initial size
