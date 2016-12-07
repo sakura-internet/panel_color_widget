@@ -4,7 +4,9 @@ node_modules/
 bower_components
 src/bower_components/
 src/lib/
+dist/
 build/
 _SpecRunner.html
 .grunt/
 src/js/.tern-port
+.DS_Store

@@ -1,4 +1,4 @@
-/*global MashupPlatform*/
+/* globals MashupPlatform */
 
 (function () {
 
