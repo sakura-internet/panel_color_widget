@@ -37,35 +37,13 @@ grunt
 
 If everything goes well, you will find a wgt file in the `build` folder.
 
-## Settings
+## Documentation
 
-- `Min height (Percentage)`: Minimal font-size to use. This value is a percentage relative to the available height.
-- `Max height (Percentage)`: Maximal font-size to use. This value is a percentage relative to the available height.
-- `Decimals`: Number of decimals to use for number values. Empty for using all the available decimals.
-
-## Wiring
-
-### Input Endpoints
-
-- **Contents**: An object with the message to display. The message should be provided using the `value` key. E.g.
-    ```json
-    {
-        "value": "Text message"
-    }
-    ```
-
-    You can also provide a unit:
-
-    ```json
-    {
-        "value": "24.5",
-        "unit": "ºC"
-    }
-    ```
-
-### Output Endpoints
-
-- This widget has no output endpoint
+Documentation about how to use this widget is available on the
+[User Guide](src/doc/userguide.md). Anyway, you can find general information
+about how to use widgets on the
+[WireCloud's User Guide](https://wirecloud.readthedocs.io/en/stable/user_guide/)
+available on Read the Docs.
 
 ## Reference
 
