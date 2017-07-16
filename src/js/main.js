@@ -29,21 +29,30 @@
     };
 
     MP.wiring.registerCallback('textinput', function (data) {
-        var message, unit, decimals, pow;
+        var message, unit, decimals, default_unit, pow;
 
         data = JSON.parse(data);
         decimals = parseInt(MashupPlatform.prefs.get('decimals'), 10);
-
-        if (typeof data.value === 'number' && !isNaN(decimals) && decimals >= 0) {
-            pow = Math.pow(10, decimals);
-            data.value = Math.round((pow * data.value).toFixed(decimals)) / pow;
+        if (isNaN(decimals) || decimals < 0) {
+            decimals = 0;
         }
 
         message = document.getElementById('message');
-        message.textContent = data.value;
+        if (data.value == null) {
+            message.textContent = MashupPlatform.prefs.get('default-value');
+        } else if (typeof data.value === 'number') {
+            pow = Math.pow(10, decimals);
+            data.value = Math.round((pow * data.value).toFixed(decimals)) / pow;
+            message.textContent = data.value;
+        }
+
+        unit = document.createElement('span');
+        default_unit = MashupPlatform.prefs.get('default-unit');
         if (data.unit != null) {
-            unit = document.createElement('span');
             unit.textContent = data.unit;
+            message.appendChild(unit);
+        } else if (default_unit.trim() != "") {
+            unit.textContent = default_unit;
             message.appendChild(unit);
         }
         repaint();
@@ -54,4 +63,18 @@
             repaint();
         }
     }.bind(this));
+
+    /* Initial content */
+
+    var message = document.getElementById('message');
+    message.textContent = MashupPlatform.prefs.get('default-value');
+
+    var default_unit = MashupPlatform.prefs.get('default-unit');
+    if (default_unit.trim() != "") {
+        var unit = document.createElement('span');
+        unit.textContent = default_unit;
+        message.appendChild(unit);
+    }
+    repaint();
+
 })();
