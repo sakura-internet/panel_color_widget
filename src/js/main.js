@@ -4,7 +4,7 @@
 
     "use strict";
 
-    const repaint = function () {
+    const repaint = function repaint() {
         var height, width, message, next, min;
 
         height = MashupPlatform.widget.context.get('heightInPixels');
@@ -26,36 +26,61 @@
         }
     };
 
-    const init = function () {
-        MashupPlatform.wiring.registerCallback('textinput', function (data) {
-            var message, unit, decimals, default_unit, pow;
-
-            data = JSON.parse(data);
-            decimals = parseInt(MashupPlatform.prefs.get('decimals'), 10);
-            if (isNaN(decimals) || decimals < 0) {
-                decimals = 0;
+    const parseInputEndpointData = function parseInputEndpointData(data) {
+        if (typeof data === "string") {
+            try {
+                data = JSON.parse(data);
+            } catch (e) {
+                return data;
             }
+        }
 
-            message = document.getElementById('message');
-            if (data.value == null) {
-                message.textContent = MashupPlatform.prefs.get('default-value');
-            } else if (typeof data.value === 'number') {
-                pow = Math.pow(10, decimals);
-                data.value = Math.round((pow * data.value).toFixed(decimals)) / pow;
-                message.textContent = data.value;
-            }
+        if (data == null) {
+            throw new MashupPlatform.wiring.EndpointTypeError();
+        }
 
-            unit = document.createElement('span');
-            default_unit = MashupPlatform.prefs.get('default-unit');
-            if (data.unit != null) {
-                unit.textContent = data.unit;
-                message.appendChild(unit);
-            } else if (default_unit.trim() != "") {
-                unit.textContent = default_unit;
-                message.appendChild(unit);
-            }
-            repaint();
-        });
+        return data;
+    };
+
+    const processIncomingData = function processIncomingData(data) {
+        var message, unit, decimals, default_unit, pow;
+
+        data = parseInputEndpointData(data);
+        if (["number", "string", "boolean"].indexOf(typeof data) !== -1) {
+            data = {
+                value: data
+            };
+        }
+        decimals = parseInt(MashupPlatform.prefs.get('decimals'), 10);
+        if (isNaN(decimals) || decimals < 0) {
+            decimals = 0;
+        }
+
+        message = document.getElementById('message');
+        if (data.value == null) {
+            message.textContent = MashupPlatform.prefs.get('default-value');
+        } else if (typeof data.value === 'number') {
+            pow = Math.pow(10, decimals);
+            data.value = Math.round((pow * data.value).toFixed(decimals)) / pow;
+            message.textContent = data.value;
+        } else {
+            message.textContent = data.value;
+        }
+
+        unit = document.createElement('span');
+        default_unit = MashupPlatform.prefs.get('default-unit');
+        if (data.unit != null) {
+            unit.textContent = data.unit;
+            message.appendChild(unit);
+        } else if (default_unit.trim() != "") {
+            unit.textContent = default_unit;
+            message.appendChild(unit);
+        }
+        repaint();
+    };
+
+    const init = function init() {
+        MashupPlatform.wiring.registerCallback('textinput', processIncomingData);
 
         MashupPlatform.widget.context.registerCallback(function (newValues) {
             if ("heightInPixels" in newValues || "widthInPixels" in newValues) {
@@ -78,6 +103,7 @@
 
     /* test-code */
     window.init = init;
+    window.processIncomingData = processIncomingData;
     window.repaint = repaint;
     /* end-test-code */
 

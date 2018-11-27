@@ -2,7 +2,7 @@
  *   Copyright (c) 2018 Future Internet Consulting and Development Solutions S.L.
  */
 
-/* global MashupPlatform, MockMP, init, repaint */
+/* global MashupPlatform, MockMP, init, processIncomingData, repaint */
 
 (function () {
 
@@ -47,6 +47,35 @@
                 it("should work with the default value", () => {
                     spyOn(window, "repaint");
                     init();
+                });
+
+            });
+
+        });
+
+        describe("wiring input", () => {
+
+            describe("basic values", () => {
+
+                it("number", () => {
+                    init();
+                    processIncomingData(5);
+
+                    expect(document.getElementById('message').textContent).toBe("5");
+                });
+
+                it("string", () => {
+                    init();
+                    processIncomingData("new content");
+
+                    expect(document.getElementById('message').textContent).toBe("new content");
+                });
+
+                it("boolean", () => {
+                    init();
+                    processIncomingData(true);
+
+                    expect(document.getElementById('message').textContent).toBe("true");
                 });
 
             });
