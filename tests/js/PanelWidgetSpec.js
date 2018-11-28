@@ -47,6 +47,72 @@
                 it("should work with the default value", () => {
                     spyOn(window, "repaint");
                     init();
+
+                    expect(repaint).not.toHaveBeenCalled();
+                    expect(document.getElementById('message').textContent).toBe("--");
+                });
+
+                it("should work with other values", () => {
+                    MashupPlatform.prefs.set("default-value", "n/a");
+                    spyOn(window, "repaint");
+                    init();
+
+                    expect(repaint).not.toHaveBeenCalled();
+                    expect(document.getElementById('message').textContent).toBe("n/a");
+                });
+
+            });
+
+            describe("default-unit", () => {
+
+                it("should work with the default value", () => {
+                    spyOn(window, "repaint");
+                    init();
+
+                    expect(repaint).not.toHaveBeenCalled();
+                    expect(document.getElementById('message').textContent).toBe("--");
+                });
+
+                it("should work with other values", () => {
+                    MashupPlatform.prefs.set("default-unit", "ºC");
+                    spyOn(window, "repaint");
+                    init();
+
+                    expect(repaint).not.toHaveBeenCalled();
+                    expect(document.getElementById('message').textContent).toBe("--ºC");
+                });
+
+            });
+
+            describe("decimals", () => {
+
+                it("should work with the default value", () => {
+                    spyOn(window, "repaint");
+                    init();
+
+                    processIncomingData(5.12);
+
+                    expect(document.getElementById('message').textContent).toBe("5.1");
+                });
+
+                it("should work with other values", () => {
+                    MashupPlatform.prefs.set("decimals", "2");
+                    spyOn(window, "repaint");
+                    init();
+
+                    processIncomingData(5.12);
+
+                    expect(document.getElementById('message').textContent).toBe("5.12");
+                });
+
+                it("should handle invalid decimal values", () => {
+                    MashupPlatform.prefs.set("decimals", "-1");
+                    spyOn(window, "repaint");
+                    init();
+
+                    processIncomingData(5.12);
+
+                    expect(document.getElementById('message').textContent).toBe("5");
                 });
 
             });
@@ -55,7 +121,7 @@
 
         describe("wiring input", () => {
 
-            describe("basic values", () => {
+            describe("basic values (plain)", () => {
 
                 it("number", () => {
                     init();
@@ -76,6 +142,80 @@
                     processIncomingData(true);
 
                     expect(document.getElementById('message').textContent).toBe("true");
+                });
+
+                it("null", () => {
+                    init();
+                    processIncomingData(null);
+
+                    expect(document.getElementById('message').textContent).toBe("--");
+                });
+
+            });
+
+            describe("basic values", () => {
+
+                it("number", () => {
+                    init();
+                    processIncomingData({value: 5});
+
+                    expect(document.getElementById('message').textContent).toBe("5");
+                });
+
+                it("string", () => {
+                    init();
+                    processIncomingData({value: "new content"});
+
+                    expect(document.getElementById('message').textContent).toBe("new content");
+                });
+
+                it("boolean", () => {
+                    init();
+                    processIncomingData({value: true});
+
+                    expect(document.getElementById('message').textContent).toBe("true");
+                });
+
+                it("null", () => {
+                    MashupPlatform.prefs.set("default-unit", "ºC");
+                    init();
+                    processIncomingData({value: null});
+
+                    expect(document.getElementById('message').textContent).toBe("--ºC");
+                });
+
+            });
+
+            describe("unit override", () => {
+
+                it("number", () => {
+                    init();
+                    processIncomingData({value: 5, unit: "km/h"});
+
+                    expect(document.getElementById('message').textContent).toBe("5km/h");
+                });
+
+                it("string", () => {
+                    MashupPlatform.prefs.set("default-unit", "ºC");
+                    init();
+                    processIncomingData({value: "new content", unit: ""});
+
+                    expect(document.getElementById('message').textContent).toBe("new content");
+                });
+
+                it("boolean", () => {
+                    MashupPlatform.prefs.set("default-unit", "ºC");
+                    init();
+                    processIncomingData({value: true, unit: null});
+
+                    expect(document.getElementById('message').textContent).toBe("true");
+                });
+
+                it("null", () => {
+                    init();
+                    processIncomingData({value: null, unit: "km/h"});
+
+                    expect(document.getElementById('message').textContent).toBe("--km/h");
                 });
 
             });

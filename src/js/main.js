@@ -35,10 +35,6 @@
             }
         }
 
-        if (data == null) {
-            throw new MashupPlatform.wiring.EndpointTypeError();
-        }
-
         return data;
     };
 
@@ -46,7 +42,7 @@
         var message, unit, decimals, default_unit, pow;
 
         data = parseInputEndpointData(data);
-        if (["number", "string", "boolean"].indexOf(typeof data) !== -1) {
+        if (data == null || ["number", "string", "boolean"].indexOf(typeof data) !== -1) {
             data = {
                 value: data
             };
@@ -72,7 +68,7 @@
         if (data.unit != null) {
             unit.textContent = data.unit;
             message.appendChild(unit);
-        } else if (default_unit.trim() != "") {
+        } else if (!("unit" in data) && default_unit.trim() != "") {
             unit.textContent = default_unit;
             message.appendChild(unit);
         }
