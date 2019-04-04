@@ -1,4 +1,4 @@
-## 1.0.3
+## 1.1.0
 
 - Add a preference for controlling how many decimals to use when displaying
   numbers
