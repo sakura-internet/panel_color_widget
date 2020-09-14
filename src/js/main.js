@@ -41,6 +41,8 @@
         if ((message.offsetWidth > width || message.offsetHeight > height)) {
             document.body.style.fontSize = Math.floor(height * min) + 'px';
         }
+        document.body.style.color = MashupPlatform.prefs.get('font-color');
+        document.body.style.backgroundColor = MashupPlatform.prefs.get('backgroudcolor');
     };
 
     const parseInputEndpointData = function parseInputEndpointData(data) {

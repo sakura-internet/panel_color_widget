@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="panel" version="1.1.0">
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="KIKUZOKIKUZO" name="panelcolor" version="1.0.0">
     <details>
-        <title>Panel</title>
-        <email>aarranz@conwet.com</email>
-        <description>Displaying simple texts messages, like measures, in an easy way</description>
+        <title>Panel Color</title>
+        <email>kikuzokikuzo@gmail.com</email>
+        <description>Displaying simple texts messages, like measures, in an easy way with color</description>
         <image>images/catalogue.png</image>
         <longdescription>DESCRIPTION.md</longdescription>
         <doc>doc/userguide.md</doc>
         <changelog>doc/changelog.md</changelog>
-        <authors>Álvaro Arranz García &lt;aarranz@conwet.com&gt;</authors>
+        <authors>kikuzokikuzo@gmail.com</authors>
         <license>Apache License 2.0</license>
         <licenseurl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseurl>
         <homepage>https://github.com/Wirecloud/panel-widget</homepage>
@@ -25,6 +25,8 @@
         <preference name="max-height" type="text" label="Max height (Percentage)" default="60" />
         <preference name="min-height" type="text" label="Min height (Percentage)" default="10" />
         <preference name="decimals" type="text" label="Decimals" description="Number of decimals to use for number values. Empty for using all the available decimals" default="1" />
+        <preference name="font-color" type="text" label="Font Color" description="set font color by name(black) or code(#000000)" default="black" />
+        <preference name="backgroudcolor" type="text" label="Background Color" description="set Backgroud color by name(white) or code(#ffffff)" default="white" />
     </preferences>
 
     <wiring>

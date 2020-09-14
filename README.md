@@ -1,9 +1,9 @@
-# Panel widget
+# Panel Color widget
 
 [![](https://nexus.lab.fiware.org/repository/raw/public/badges/chapters/visualization.svg)](https://www.fiware.org/developers/catalogue/)
 ![](https://img.shields.io/github/license/Wirecloud/panel-widget.svg)
 
-The panel widget is a [WireCloud widget](http://wirecloud.readthedocs.org/en/latest/) that provides an easy way to
+The panel color widget is a [WireCloud widget](http://wirecloud.readthedocs.org/en/latest/) that provides an easy way to
 display simple text messages, like measures.
 
 ## Build
